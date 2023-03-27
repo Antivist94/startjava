@@ -79,7 +79,7 @@ public class IfElseStatementTheme {
             if (number1Ones == number2Ones) {
                 System.out.println("В первом разряде числа " + number1Ones + " у обоих чисел одинаковые.");
             } else {
-            System.out.println("У данных чисел одинаковых цифр в одном и том же разряде нет."); 
+                System.out.println("У данных чисел одинаковых цифр в одном и том же разряде нет."); 
             }
         }
 
@@ -116,20 +116,20 @@ public class IfElseStatementTheme {
         if (historyPercent > 60) {
              historyMark = 3;
         }
-        if (historyPercent > 73) {
+        else if (historyPercent > 73) {
              historyMark = 4;
         }
-        if (historyPercent > 91) {
+        else if (historyPercent > 91) {
              historyMark = 5;
         }
         System.out.println("История: " + historyMark);
         if (programmingPercent > 60) {
             programmingMark = 3;
         }
-        if (programmingPercent > 73) {
+        else if (programmingPercent > 73) {
             programmingMark = 4;
         }
-        if (programmingPercent > 91) {
+        else if (programmingPercent > 91) {
             programmingMark = 5;
         }
         System.out.println("Программирование: " + programmingMark);
