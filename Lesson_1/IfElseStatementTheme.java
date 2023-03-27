@@ -148,19 +148,19 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n9. Подсчет количества банкнот.");
-        int outCash = 567; // сумма, которую надо выдать
-        int have1nominal = 50; // сколько у нас есть однодолларовых купюр
-        int have10nominal = 5; // сколько у нас есть десятидолларовых купюр
-        int have100nominal = 10; // сколько у нас есть стодолларовых купюр
-        int ammountCash = ((have1nominal * 1) + (have10nominal * 10) + (have100nominal * 100));// считаю всю сумму денег, что есть в банкомате
-        int needAtm100 = outCash / 100; // считаю, сколько нужно выдать сотками
-        int needAtm10 = outCash / 10 % 10; // считаю, сколько нужно выдать десятками
-        int needAtm1 = outCash % 10; // считаю, сколько нужно выдать однушками
+        int outCash = 567;
+        int have1nominal = 50;
+        int have10nominal = 5;
+        int have100nominal = 10;
+        int ammountCash = ((have1nominal * 1) + (have10nominal * 10) + (have100nominal * 100));
+        int needAtm100 = outCash / 100;
+        int needAtm10 = outCash / 10 % 10;
+        int needAtm1 = outCash % 10;
         int goToAtm = 0;
-        if (outCash <= ammountCash && needAtm1 <= have1nominal) { // узнаю, сможет ли банкомат выдать сумму денег + узнаю, достаточно ли однодолларовых купюр и если да, то поехали:
+        if (outCash <= ammountCash && needAtm1 <= have1nominal) {
             if (needAtm100 <= have100nominal) {
                 goToAtm +=  needAtm100 * 100;
-                } else {
+            } else {
                 goToAtm += have100nominal * 100;
                 int need10 = (outCash - goToAtm) / 10;
                 goToAtm += (have10nominal * 10);
@@ -172,7 +172,7 @@ public class IfElseStatementTheme {
             }
             if (needAtm10 <= have10nominal) {
                 goToAtm += needAtm10 * 10;
-                } else {
+            } else {
                 goToAtm += have10nominal * 10;
                 int need1 = (outCash - goToAtm);
                 goToAtm += need1;
@@ -182,12 +182,12 @@ public class IfElseStatementTheme {
             }
             if (needAtm1 <= have1nominal) {
                 goToAtm += needAtm1;
-                }
-                System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + needAtm100 + ".\n"
-                        + "Купюр в десять долларов к выдаче: " + needAtm10 + ".\n"
-                        + "Купюр в один доллар к выдаче: " + needAtm1 + ".\n" );
+            }
+            System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + needAtm100 + ".\n"
+                    + "Купюр в десять долларов к выдаче: " + needAtm10 + ".\n"
+                    + "Купюр в один доллар к выдаче: " + needAtm1 + ".\n" );
         } else {
-        System.out.println("Для выдачи " + outCash + "$ купюр в банкомате не хватает.");// если купюр недостаточно, то сообщаем об этом
+            System.out.println("Для выдачи " + outCash + "$ купюр в банкомате не хватает.");
         }
     }
 }
