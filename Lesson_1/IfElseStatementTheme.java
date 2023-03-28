@@ -115,21 +115,17 @@ public class IfElseStatementTheme {
         int programmingPercent = 91;
         if (historyPercent > 60) {
              historyMark = 3;
-        }
-        else if (historyPercent > 73) {
+        } else if (historyPercent > 73) {
              historyMark = 4;
-        }
-        else if (historyPercent > 91) {
+        } else if (historyPercent > 91) {
              historyMark = 5;
         }
         System.out.println("История: " + historyMark);
         if (programmingPercent > 60) {
             programmingMark = 3;
-        }
-        else if (programmingPercent > 73) {
+        } else if (programmingPercent > 73) {
             programmingMark = 4;
-        }
-        else if (programmingPercent > 91) {
+        } else if (programmingPercent > 91) {
             programmingMark = 5;
         }
         System.out.println("Программирование: " + programmingMark);
@@ -149,43 +145,42 @@ public class IfElseStatementTheme {
 
         System.out.println("\n9. Подсчет количества банкнот.");
         int outCash = 567;
-        int have1nominal = 50;
-        int have10nominal = 5;
-        int have100nominal = 10;
+        int have1nominal = 80;
+        int have10nominal = 15;
+        int have100nominal = 4;
         int ammountCash = ((have1nominal * 1) + (have10nominal * 10) + (have100nominal * 100));
-        int needAtm100 = outCash / 100;
-        int needAtm10 = outCash / 10 % 10;
-        int needAtm1 = outCash % 10;
-        int goToAtm = 0;
-        if (outCash <= ammountCash && needAtm1 <= have1nominal) {
+        if ((outCash <= ammountCash) && ((outCash % 10) <= have1nominal)) {
+            int needAtm100 = outCash / 100;
+            int needAtm10 = outCash / 10 % 10;
+            int needAtm1 = outCash % 10;
+            int goToAtm100 = 0;
+            int goToAtm10 = 0;
+            int goToAtm1 = 0;
+            int need10 = 0;
+            int need1 = 0;
             if (needAtm100 <= have100nominal) {
-                goToAtm +=  needAtm100 * 100;
-            } else {
-                goToAtm += have100nominal * 100;
-                int need10 = (outCash - goToAtm) / 10;
-                goToAtm += (have10nominal * 10);
-                int need1 = (outCash - goToAtm);
-                goToAtm += need1;
-                System.out.print("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + have100nominal + ".\n"
-                + "Купюр в десять долларов к выдаче: " + need10 + ".\n" + "Купюр в один доллар к выдаче: " + need1 + ".\n" );
-                return;
+                goToAtm100 += needAtm100;
+            } else if (needAtm100 > have100nominal) {
+                goToAtm100 += have100nominal;
+                need10 = (needAtm100 - goToAtm100) * 10;
+                goToAtm10 += need10;
+                have10nominal -= need10; // я здесь отнял от общего остатка всех десяток ту сумму, которую использовал для размена
             }
-            if (needAtm10 <= have10nominal) {
-                goToAtm += needAtm10 * 10;
-            } else {
-                goToAtm += have10nominal * 10;
-                int need1 = (outCash - goToAtm);
-                goToAtm += need1;
-                System.out.print("Сумма " + outCash + "$ для снятия доступна. Купюр в сто долларов к выдаче: " + needAtm100 + ".\n"
-                + "Купюр в десять долларов к выдаче: " + have10nominal + ".\n" + "Купюр в один доллар к выдаче: " + need1 + ".\n" );
-                return;
+            if (needAtm10 <= (have10nominal - need10)) {
+                goToAtm10 += needAtm10;
+            } else if (needAtm10 > (have10nominal - need10)) {
+                have10nominal -= need10;
+                goToAtm10 += have10nominal; // и в этой ситуации у меня программа считала сумму всех десяток из переменной have10nominal  так, будто бы я ничего не отнимал ранее
+                need1 = (needAtm10 - goToAtm10) * 10;
+                goToAtm1 += need1;
+                have1nominal -= need1;
             }
             if (needAtm1 <= have1nominal) {
-                goToAtm += needAtm1;
+                goToAtm1 += needAtm1;
             }
-            System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + needAtm100 + ".\n"
-                    + "Купюр в десять долларов к выдаче: " + needAtm10 + ".\n"
-                    + "Купюр в один доллар к выдаче: " + needAtm1 + ".\n" );
+            System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + goToAtm100 + ".\n"
+                    + "Купюр в десять долларов к выдаче: " + goToAtm10 + ".\n"
+                    + "Купюр в один доллар к выдаче: " + goToAtm1 + ".\n" );
         } else {
             System.out.println("Для выдачи " + outCash + "$ купюр в банкомате не хватает.");
         }
