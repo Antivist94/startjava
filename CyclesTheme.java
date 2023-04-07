@@ -48,14 +48,54 @@ public class CyclesTheme {
         System.out.println("\n4. Вывод чисел на консоль в несколько строк.");
         int intervalStart = 1;
         int intervalEnd = 24;
-        for (int i = intervalStart; i < intervalEnd; i+=2) {
+        int lengthOfRow = 5;
+        int iterationSteps = 2;
+        for (int i = intervalStart; i < intervalEnd; i+=iterationSteps) {
              System.out.printf ("%3d", i);
-             if (i % 10 == 9) {
-                System.out.println (); 
-             }
-             if (i + 5 > intervalEnd)
-                System.out.printf ("%3d", 0);
-             
+             lengthOfRow--;
+             if (lengthOfRow == 0) {
+                System.out.println ();
+                lengthOfRow = 5;
+             } 
+        } if ((lengthOfRow > 0) && (lengthOfRow < 5))
+        for (int z = 0; z < lengthOfRow; z++) {
+            System.out.printf ("%3d", 0);
+        }
+
+        System.out.println("\n5. Проверка количества двоек на четность/нечетность.");
+        int anyNum = 3242592;
+        int srcNum = 0;
+        int countNumberTwo = 0;
+        int showNum = anyNum;
+        while (anyNum > 0) {
+            srcNum = anyNum % 10;
+            anyNum /= 10;
+            if (srcNum == 2) {
+                ++countNumberTwo;
+            }
+        }
+        if ((countNumberTwo % 2) == 0) {
+        System.out.println("Число " + showNum + " содержит чётное количество двоек.");
+        } else {
+            System.out.println("Число " + showNum + " содержит нечётное количество двоек.");
+        }
+
+        System.out.println("\n6. Отображение фигур в консоли.");
+        int hight = 5;
+        int width = 10;
+        for (int i = 0; i < hight; i++) {
+             System.out.println("**********");
+        }
+        System.out.println();
+        width = 5;
+        while (width != 0) {
+            int charPrint = 0;
+            while (charPrint != width) {
+                 System.out.print("#");
+                 charPrint++;
+            }
+        System.out.println();
+        --width;
         }
 
 

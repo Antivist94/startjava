@@ -151,38 +151,21 @@ public class IfElseStatementTheme {
         int needAtm100 = outCash / 100;
         int needAtm10 = outCash / 10 % 10;
         int needAtm1 = outCash % 10;
-        int giveToAtm100 = 0;
-        int giveToAtm10 = 0;
-        int giveToAtm1 = 0;
-        int exchange100nominals = 0;
-        int exchange10nominals = 0;
-        int exchange1nominals = 0;
-        int ammountCash = ((have1nominal * 1) + (have10nominal * 10) + (have100nominal * 100));
-        if ((outCash <= ammountCash) && (needAtm1 <= have1nominal)){
-            if (needAtm100 <= have100nominal) {
-                giveToAtm100 = needAtm100;
-            } else {
-                exchange100nominals = (needAtm100 - have100nominal) * 10;
-                giveToAtm100 = have100nominal;
-                giveToAtm10 += exchange100nominals;
-                have10nominal -= exchange100nominals;
+            if (needAtm100 > have100nominal) {
+                needAtm10 = (needAtm100 - have100nominal) * 10 + needAtm10;
+                needAtm100 = have100nominal;
             }
-            if (needAtm10 <= (have10nominal - exchange100nominals)) {
-                giveToAtm10 += needAtm10;
-            } else {
-                giveToAtm10 = have10nominal + exchange100nominals;
-                exchange10nominals = (needAtm10 - have10nominal) * 10;
-                have1nominal -= exchange10nominals;
-                giveToAtm1 += exchange10nominals;
+            if (needAtm10 > have10nominal) {
+                needAtm1 = (needAtm10 - have10nominal) * 10 + needAtm1;
+                needAtm10 = have10nominal;
             }
-            if (needAtm1 <= have1nominal) {
-                giveToAtm1 += needAtm1;
-            }
-            System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + giveToAtm100 + ".\n"
-                    + "Купюр в десять долларов к выдаче: " + giveToAtm10 + ".\n"
-                    + "Купюр в один доллар к выдаче: " + giveToAtm1 + ".\n" );
-        } else {
-            System.out.println("Для выдачи " + outCash + "$ купюр в банкомате не хватает.");
+            if (needAtm1 > have1nominal) {
+                System.out.println("Для выдачи " + outCash + "$ купюр в банкомате не хватает.");
+            } else{          
+                System.out.println("Сумма " + outCash + "$ для снятия  доступна. Купюр в сто долларов к выдаче: " + needAtm100 + ".\n"
+                    + "Купюр в десять долларов к выдаче: " + needAtm10 + ".\n"
+                    + "Купюр в один доллар к выдаче: " + needAtm1 + ".\n" );
         }
     }
 }
+
