@@ -33,8 +33,8 @@ public class CyclesTheme {
         if (max < num3) {
             max = num3;
         }
-        System.out.print(max - 1);
-        for (int i = max - 2; i > min; i--) {
+        System.out.print(--max);
+        for (int i = --max; i > min; i--) {
             System.out.print(", " + i);
         }
 
@@ -136,34 +136,28 @@ public class CyclesTheme {
         int reverseNum = 0;
         System.out.print("Число " + anyNum);
         while (anyNum > 0) {
-            int srcNum = anyNum % 10;
+            int remainder = anyNum % 10;
             anyNum /= 10;
-            reverseNum = reverseNum * 10 + srcNum;
+            reverseNum = reverseNum * 10 + remainder;
             }
-            if (copyAnyNum == reverseNum) {
-                System.out.println(" - палиндром.");
-            } else {
-                System.out.println(" не является палиндромом.");
+        if (copyAnyNum == reverseNum) {
+            System.out.println(" - палиндром.");
+        } else {
+            System.out.println(" не является палиндромом.");
         }
 
         System.out.println("\n9. Определение, является ли число счастливым.");
         anyNum = 321123;
-        copyAnyNum = anyNum;
         int firstHalf = 0;
         int secondHalf = 0;
-        counter = 0;
-        while (copyAnyNum > 0) {
-            copyAnyNum /= 10;
-            counter++;
-        }
         System.out.print("Число " + anyNum);
-        for (int i = counter; i > 0; i--) {
-            copyAnyNum = anyNum % 10;
+        for (int i = 6; i > 0; i--) {
+            int remainder = anyNum % 10;
             anyNum /= 10;
-            if (i <= (counter / 2)) {
-                secondHalf += copyAnyNum;
+            if (i <= 3) {
+                firstHalf += remainder;
             } else {
-                firstHalf += copyAnyNum;
+                secondHalf += remainder;
             }
         }
         if (firstHalf == secondHalf) {
@@ -184,8 +178,7 @@ public class CyclesTheme {
             }
             System.out.print(" " + i + "|");
             for (int j = 2; j < 10; j++) {
-                int multiNum = j * i;
-                System.out.printf("%3d", multiNum);
+                System.out.printf("%3d", (j * i));
             }
         }
     }
