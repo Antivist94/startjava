@@ -139,7 +139,7 @@ public class CyclesTheme {
             int remainder = anyNum % 10;
             anyNum /= 10;
             reverseNum = reverseNum * 10 + remainder;
-            }
+        }
         if (copyAnyNum == reverseNum) {
             System.out.println(" - палиндром.");
         } else {
